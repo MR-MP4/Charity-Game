@@ -1,0 +1,1652 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --yellow-main: #e2d566;
+  --yellow-light: #f5ea8a;
+  --yellow-hover: #ece06e;
+  --sky-color: #dff3f8;
+  --ground-color: #e2e8a1;
+  --menu-bg: #c5d6fc;
+  --menu-border: #6342dd;
+  --dark-border: #161616;
+  --panel-bg: #e2d566;
+  --ink: #111111;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  background: #eef2e6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: transform 0.08s ease, filter 0.12s ease;
+  touch-action: manipulation;
+}
+
+button:focus-visible {
+  outline: 3px solid #6342dd;
+  outline-offset: 2px;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* ============================================================
+   RESPONSIVE VIEWPORT CONTAINERS
+   - Desktop/PC/Laptop: takes up more screen (94vw x 94vh)
+   - Tablet & Phone: matches actual width and height (100vw x 100dvh)
+============================================================ */
+.app-viewport {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding: clamp(12px, 2vh, 28px);
+    background: #e2e8db;
+  }
+
+  .app-viewport {
+    width: 95vw;
+    max-width: 1560px;
+    height: 94vh;
+    max-height: 960px;
+    min-height: 680px;
+  }
+}
+
+/* ============================================================
+   MAIN MENU SCREEN (TITLE SCREEN MATCHING MOCKUP)
+============================================================ */
+.main-menu-shell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-menu-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--menu-bg);
+  border: 4px solid var(--menu-border);
+  box-shadow: 0 16px 48px rgba(40, 20, 100, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px 32px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* PC and Laptop: Takes up much more of the screen with generous scale */
+@media (min-width: 1024px) {
+  .main-menu-card {
+    border-radius: 14px;
+    border-width: 5px;
+    padding: clamp(40px, 6vh, 68px) 56px;
+  }
+
+  .menu-version {
+    top: clamp(20px, 3vh, 32px);
+    right: clamp(24px, 3vw, 40px);
+    font-size: clamp(17px, 1.4vw, 22px);
+    font-weight: 700;
+  }
+
+  .menu-header {
+    margin-bottom: clamp(36px, 5vh, 60px);
+  }
+
+  .menu-title {
+    font-size: clamp(64px, 7vw, 110px);
+    letter-spacing: -1px;
+  }
+
+  .menu-subtitle {
+    font-size: clamp(22px, 2.2vw, 32px);
+    margin-top: 14px;
+  }
+
+  .menu-actions {
+    max-width: 560px;
+    gap: 22px;
+    margin-bottom: 36px;
+  }
+
+  .primary-play-button {
+    padding: 26px 44px;
+    font-size: 26px;
+    border-radius: 26px;
+    border-width: 4.5px;
+  }
+
+  .menu-sub-actions {
+    gap: 20px;
+  }
+
+  .secondary-button {
+    padding: 20px 32px;
+    font-size: 22px;
+    border-radius: 22px;
+    border-width: 4px;
+  }
+
+  .menu-logo-container {
+    bottom: clamp(24px, 3.5vh, 40px);
+    left: clamp(28px, 3.5vw, 44px);
+  }
+}
+
+.menu-version {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  letter-spacing: 0.2px;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.menu-title {
+  margin: 0;
+  font-size: clamp(44px, 6vw, 76px);
+  font-weight: 900;
+  color: #0c0c0c;
+  letter-spacing: -0.5px;
+  line-height: 1.05;
+}
+
+.menu-subtitle {
+  margin: 10px 0 0;
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: #262626;
+  font-weight: 500;
+}
+
+.menu-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 460px;
+  margin-bottom: 24px;
+  z-index: 2;
+}
+
+.menu-button {
+  background: var(--yellow-main);
+  border: 3.5px solid var(--dark-border);
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  box-shadow: 0 4px 0 var(--dark-border);
+}
+
+.menu-button:hover {
+  background: var(--yellow-hover);
+  filter: brightness(1.03);
+}
+
+.menu-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--dark-border);
+}
+
+.primary-play-button {
+  width: 100%;
+  padding: 20px 28px;
+  font-size: 21px;
+  border-radius: 20px;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+}
+
+.menu-sub-actions {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.secondary-button {
+  flex: 1;
+  padding: 16px 20px;
+  font-size: 17px;
+  border-radius: 18px;
+}
+
+.menu-logo-container {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  z-index: 2;
+}
+
+/* ============================================================
+   RESPONSIVE CHARITY: WATER LOGO
+============================================================ */
+.charity-logo-box {
+  background-color: #050505;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 2px solid #000;
+  user-select: none;
+}
+
+.charity-logo-sm {
+  width: 48px;
+  height: 56px;
+}
+.charity-logo-sm .charity-logo-svg {
+  width: 28px;
+  height: 28px;
+}
+.charity-logo-sm .charity-logo-text {
+  font-size: 8px;
+}
+
+.charity-logo-md {
+  width: 96px;
+  height: 110px;
+}
+.charity-logo-md .charity-logo-svg {
+  width: 54px;
+  height: 54px;
+}
+.charity-logo-md .charity-logo-text {
+  font-size: 10px;
+}
+
+.charity-logo-lg {
+  width: 140px;
+  height: 160px;
+}
+.charity-logo-lg .charity-logo-svg {
+  width: 84px;
+  height: 84px;
+}
+.charity-logo-lg .charity-logo-text {
+  font-size: 13px;
+}
+
+.charity-logo-responsive {
+  width: clamp(75px, 9vw, 136px);
+  height: clamp(86px, 10.5vw, 154px);
+}
+.charity-logo-responsive .charity-logo-svg {
+  width: clamp(42px, 5.2vw, 76px);
+  height: clamp(42px, 5.2vw, 76px);
+}
+.charity-logo-responsive .charity-logo-text {
+  font-size: clamp(8.5px, 0.9vw, 12.5px);
+}
+
+.charity-logo-text {
+  color: #ffffff;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  margin-top: 4px;
+  text-align: center;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   ACTUAL GAME SCREEN (MATCHING MOCKUP TOP HALF)
+============================================================ */
+.game-desktop-shell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border: 3px solid #111;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .game-container {
+    border-radius: 14px;
+    border-width: 4px;
+  }
+}
+
+/* Top bar with tabs */
+.mockup-top-bar {
+  display: flex;
+  align-items: stretch;
+  background: #eef2e6;
+  border-bottom: 2.5px solid #111;
+  min-height: 52px;
+  flex-shrink: 0;
+}
+
+.top-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--yellow-main);
+  border: 2px solid #111;
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.budget-tab {
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.tab-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tab-value {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.top-nav-group {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  background: #f0f0eb;
+}
+
+.top-nav-stat {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--yellow-main);
+  border: 2px solid #111;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  font-size: 15px;
+  color: #111;
+  padding: 0 8px;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.top-nav-stat .stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c1c1c;
+}
+
+.top-nav-stat .stat-value {
+  font-size: 16px;
+  font-weight: 800;
+  color: #000000;
+}
+
+.day-tab {
+  border-top: none;
+  border-bottom: none;
+  border-right: 2px solid #111;
+}
+
+.game-reset-btn {
+  padding: 0 14px;
+  background: #fff8f8;
+  font-size: 13px;
+  font-weight: 700;
+  color: #b91c1c;
+  border-left: 2px solid #111;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.game-reset-btn:hover {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.menu-return-btn {
+  padding: 0 16px;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  color: #222;
+  border-left: 2px solid #111;
+  white-space: nowrap;
+}
+
+.menu-return-btn:hover {
+  background: #eaeaea;
+}
+
+/* World area - fills available vertical height on device */
+.mockup-world {
+  position: relative;
+  width: 100%;
+  flex: 1 1 0;
+  min-height: 180px;
+  overflow: hidden;
+  border-bottom: 2.5px solid #111;
+  user-select: none;
+}
+
+.mockup-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48%;
+  background: var(--sky-color);
+}
+
+.mockup-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52%;
+  background: var(--ground-color);
+}
+
+/* Left building: Well / Water Pump */
+.mockup-pump-art {
+  position: absolute;
+  left: 10%;
+  bottom: 10%;
+  width: 140px;
+  height: 170px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  z-index: 3;
+}
+
+.mockup-pump-art:hover {
+  transform: translateY(-3px);
+}
+
+.mockup-pump-roof {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 136px;
+  height: 72px;
+  background: #73787d;
+  border: 2px solid #202224;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.mockup-pump-post {
+  position: absolute;
+  top: 66px;
+  width: 14px;
+  height: 52px;
+  background: #e3d57d;
+  border: 2px solid #3a382c;
+}
+
+.mockup-pump-post.post-left {
+  left: 38px;
+}
+
+.mockup-pump-post.post-right {
+  right: 38px;
+}
+
+.mockup-pump-base {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  width: 96px;
+  height: 56px;
+  background: #c3c8ca;
+  border: 2.5px solid #202224;
+  border-radius: 2px;
+}
+
+/* Right building: Sanitation station / House */
+.mockup-sanitation-art {
+  position: absolute;
+  right: 14%;
+  bottom: 12%;
+  width: 250px;
+  height: 220px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  z-index: 3;
+}
+
+.mockup-sanitation-art:hover {
+  transform: translateY(-3px);
+}
+
+.mockup-station-roof {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 105px;
+  background: #b7b05e;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.mockup-station-body {
+  position: absolute;
+  top: 100px;
+  left: 56px;
+  width: 138px;
+  height: 104px;
+  background: #eee17f;
+  border: 2.5px solid #222;
+}
+
+/* Building hover badge */
+.building-badge {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid #222;
+  border-radius: 6px;
+  padding: 3px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+.building-badge small {
+  color: #555;
+  font-size: 10px;
+}
+
+/* Corner Charity: Water Logo in World */
+.world-corner-logo {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  z-index: 5;
+}
+
+/* Bottom Category Tab Bar */
+.mockup-category-tabs {
+  display: flex;
+  background: #ded79a;
+  border-bottom: 2.5px solid #111;
+  flex-shrink: 0;
+}
+
+.category-tab-btn {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  background: #e2d566;
+  border: none;
+  border-right: 2px solid #111;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.category-tab-btn:last-child {
+  border-right: none;
+}
+
+.category-tab-btn:hover {
+  background: #ecd95d;
+}
+
+.category-tab-btn.active-cat-tab {
+  background: #f7e87a;
+  box-shadow: inset 0 -3px 0 #111;
+}
+
+/* Bottom Action Area */
+.mockup-bottom-panel {
+  background: #faf7dd;
+  padding: 16px 22px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  max-height: 220px;
+}
+
+.category-action-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category-header-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.category-header-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+}
+
+.category-header-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.action-buttons-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.mockup-action-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #eedf6c;
+  border: 2.5px solid #202020;
+  border-radius: 12px;
+  padding: 12px 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.08s ease, opacity 0.12s ease;
+}
+
+.mockup-action-card:hover:not(:disabled) {
+  background: #f7e97d;
+  transform: translateY(-1px);
+}
+
+.mockup-action-card:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+}
+
+.action-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #202020;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.action-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.action-card-text strong {
+  font-size: 14px;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.action-card-text span {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2b2b2b;
+}
+
+.action-card-text small {
+  font-size: 11px;
+  color: #4a4a4a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status Bar & Stats */
+.mockup-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 16px;
+  background: #c8d9fc;
+  border-top: 2px solid #111;
+  flex-shrink: 0;
+}
+
+.status-feedback {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.status-indicator-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2563eb;
+  flex-shrink: 0;
+}
+
+.daily-activity-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.daily-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.status-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.next-day-btn {
+  background: var(--yellow-main);
+  border: 2px solid #111;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #111;
+  white-space: nowrap;
+  box-shadow: 0 2px 0 #111;
+  flex-shrink: 0;
+}
+
+.next-day-btn:hover {
+  background: var(--yellow-hover);
+}
+
+.next-day-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* ============================================================
+   TABLET ADAPTATION (641px to 1023px)
+   - Matches device width and height exactly (100vw x 100dvh)
+============================================================ */
+@media (max-width: 1023px) {
+  body {
+    padding: 0;
+    background: #c5d6fc;
+  }
+
+  .app-viewport {
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+  }
+
+  .main-menu-card {
+    border-radius: 0;
+    border-width: 3px;
+    padding: 32px 24px;
+  }
+
+  .game-container {
+    border-radius: 0;
+    border-width: 0;
+  }
+
+  .mockup-sanitation-art {
+    right: 8%;
+    transform: scale(0.9);
+    transform-origin: bottom right;
+  }
+
+  .mockup-pump-art {
+    left: 8%;
+    transform: scale(0.9);
+    transform-origin: bottom left;
+  }
+}
+
+/* ============================================================
+   PHONE ADAPTATION (<= 640px)
+   - Matches device width and height exactly (100vw x 100dvh)
+============================================================ */
+@media (max-width: 640px) {
+  /* Main Menu on Phone */
+  .main-menu-card {
+    padding: 24px 16px 20px;
+    justify-content: space-between;
+  }
+
+  .menu-version {
+    top: 12px;
+    right: 14px;
+    font-size: 13px;
+  }
+
+  .menu-header {
+    margin-top: 18px;
+    margin-bottom: 20px;
+  }
+
+  .menu-title {
+    font-size: 38px;
+  }
+
+  .menu-subtitle {
+    font-size: 16px;
+    margin-top: 6px;
+  }
+
+  .menu-actions {
+    max-width: 340px;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .primary-play-button {
+    padding: 16px 20px;
+    font-size: 18px;
+    border-radius: 16px;
+    border-width: 3px;
+  }
+
+  .menu-sub-actions {
+    gap: 10px;
+  }
+
+  .secondary-button {
+    padding: 13px 14px;
+    font-size: 15px;
+    border-radius: 14px;
+    border-width: 3px;
+  }
+
+  .menu-logo-container {
+    position: static;
+    margin-top: auto;
+  }
+
+  /* Game Screen on Phone */
+  .mockup-top-bar {
+    flex-wrap: wrap;
+    min-height: auto;
+  }
+
+  .top-tab.budget-tab {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 13px;
+    border-bottom: 2px solid #111;
+  }
+
+  .top-tab.day-tab {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-bottom: 2px solid #111;
+  }
+
+  .game-reset-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-bottom: 2px solid #111;
+  }
+
+  .menu-return-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-bottom: 2px solid #111;
+  }
+
+  .top-nav-group {
+    order: 3;
+    flex-basis: 100%;
+    border-bottom: none;
+  }
+
+  .top-nav-stat {
+    padding: 7px 4px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .top-nav-stat .stat-label {
+    font-size: 11px;
+  }
+
+  .top-nav-stat .stat-value {
+    font-size: 13px;
+  }
+
+  .mockup-world {
+    min-height: 160px;
+  }
+
+  .mockup-pump-art {
+    left: 4%;
+    bottom: 8%;
+    transform: scale(0.72);
+    transform-origin: bottom left;
+  }
+
+  .mockup-sanitation-art {
+    right: 4%;
+    bottom: 8%;
+    transform: scale(0.68);
+    transform-origin: bottom right;
+  }
+
+  .world-corner-logo {
+    display: none; /* Keep clean space on small mobile screen */
+  }
+
+  .category-tab-btn {
+    padding: 9px 8px;
+    font-size: 12px;
+  }
+
+  .mockup-bottom-panel {
+    padding: 10px 12px;
+    max-height: 190px;
+  }
+
+  .category-header-info {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .category-header-info h3 {
+    font-size: 14px;
+  }
+
+  .category-header-info p {
+    font-size: 11px;
+  }
+
+  .action-buttons-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .mockup-action-card {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  .action-card-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+  }
+
+  .action-card-text strong {
+    font-size: 13px;
+  }
+
+  .action-card-text span {
+    font-size: 11px;
+  }
+
+  .action-card-text small {
+    font-size: 10px;
+  }
+
+  .mockup-status-bar {
+    padding: 8px 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .status-feedback {
+    flex-basis: 100%;
+    order: 1;
+  }
+
+  .daily-activity-content {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .daily-label {
+    font-size: 12px;
+  }
+
+  .status-text {
+    font-size: 12px;
+  }
+
+  .next-day-btn {
+    order: 2;
+    padding: 6px 12px;
+    font-size: 12px;
+    margin-left: auto;
+  }
+}
+
+/* ============================================================
+   MODALS (SETTINGS & FEEDBACK)
+============================================================ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border: 3px solid #111;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+.modal-card h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.toggle-button {
+  background: var(--yellow-main);
+  border: 2px solid #111;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.danger-button {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1.5px solid #dc2626;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.setting-tag {
+  font-size: 12px;
+  color: #4b5563;
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.feedback-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #222;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.modal-description {
+  margin: 0;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.4;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.close-modal-btn {
+  background: var(--yellow-main);
+  border: 2px solid #111;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.close-modal-btn.secondary {
+  background: #f1f1f1;
+  border-color: #888;
+  color: #333;
+}
+
+.feedback-thankyou {
+  text-align: center;
+  padding: 20px;
+  font-weight: 600;
+  color: #166534;
+}
+
+/* ============================================================
+   FACILITY DISRUPTION & REPAIR EVENT STYLES
+============================================================ */
+.disruption-modal-card {
+  max-width: 530px;
+  border: 3.5px solid #b91c1c;
+  background: #ffffff;
+}
+
+.disruption-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.disruption-alert-badge {
+  background: #fee2e2;
+  color: #991b1b;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1.5px solid #ef4444;
+  letter-spacing: 0.2px;
+}
+
+.disruption-facility-tag {
+  background: #fef08a;
+  color: #854d0e;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1.5px solid #eab308;
+}
+
+.disruption-event-title {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #111;
+  line-height: 1.25;
+}
+
+.disruption-cause-box {
+  background: #fef2f2;
+  border: 1.5px solid #fecaca;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+.cause-heading {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #991b1b;
+  margin-bottom: 4px;
+  letter-spacing: 0.4px;
+}
+
+.cause-text {
+  margin: 0;
+  font-size: 13.5px;
+  color: #450a0a;
+  line-height: 1.45;
+}
+
+.disruption-impact-note {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #b91c1c;
+  background: #fff5f5;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  border-left: 4px solid #ef4444;
+}
+
+.repair-cost-breakdown {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+  color: #334155;
+}
+
+.cost-row.discount-row {
+  color: #15803d;
+  font-weight: 700;
+  border-bottom: 1px dashed #cbd5e1;
+  padding-bottom: 8px;
+}
+
+.discount-value {
+  color: #15803d;
+  font-size: 15px;
+}
+
+.cost-row.total-row {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+  padding-top: 2px;
+}
+
+.final-price {
+  font-size: 19px;
+  color: #047857;
+}
+
+.education-perk-explanation {
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: #0369a1;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  padding: 6px 10px;
+  line-height: 1.35;
+}
+
+.disruption-budget-warning {
+  background: #fffbeb;
+  border: 1.5px solid #fde047;
+  color: #854d0e;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.disruption-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.repair-confirm-btn {
+  background: #10b981;
+  color: #ffffff;
+  border-color: #047857;
+}
+
+.repair-confirm-btn:hover {
+  background: #059669;
+}
+
+/* Building in-world damage badges */
+.building-damage-badge {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 12px;
+  border: 1.5px solid #7f1d1d;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+  white-space: nowrap;
+  animation: pulse-danger 1.8s infinite;
+  z-index: 6;
+}
+
+@keyframes pulse-danger {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+/* Maintenance section in Builds panel */
+.repair-banner-card {
+  background: #fef2f2;
+  border: 2px solid #ef4444;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.repair-banner-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.repair-banner-info strong {
+  font-size: 13.5px;
+  color: #991b1b;
+}
+
+.repair-banner-info span {
+  font-size: 11.5px;
+  color: #7f1d1d;
+}
+
+.repair-banner-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.quick-repair-btn {
+  background: #10b981;
+  color: #ffffff;
+  border: 1.5px solid #047857;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.quick-repair-btn:hover:not(:disabled) {
+  background: #059669;
+}
+
+.quick-repair-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   ACCOMPLISHMENT & GAME OVER STYLES
+============================================================ */
+.accomplishment-modal-card {
+  max-width: 580px;
+  border: 4px solid #111;
+  background: #ffffff;
+  padding: 24px 28px;
+}
+
+.accomplishment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.accomplishment-tag {
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1.5px solid #3b82f6;
+}
+
+.budget-depleted-badge {
+  background: #fee2e2;
+  color: #991b1b;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1.5px solid #ef4444;
+}
+
+.accomplishment-title {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.accomplishment-intro {
+  margin: 0 0 16px;
+  font-size: 13.5px;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.impact-hero-banner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 12px;
+  background: #fefce8;
+  border: 2px solid #eab308;
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+
+.impact-hero-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.impact-hero-num {
+  font-size: 28px;
+  font-weight: 900;
+  color: #854d0e;
+  line-height: 1.1;
+}
+
+.impact-hero-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #713f12;
+  margin-top: 3px;
+}
+
+.accomplishment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.accomplishment-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.item-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.item-details strong {
+  font-size: 13px;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-details small {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.25;
+}
+
+.charity-mission-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0f172a;
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #ffffff;
+  margin-bottom: 18px;
+}
+
+.charity-mission-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.charity-mission-text strong {
+  font-size: 12.5px;
+  color: #facc15;
+}
+
+.charity-mission-text span {
+  font-size: 11px;
+  color: #cbd5e1;
+  line-height: 1.35;
+}
+
+.accomplishment-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.restart-action-btn {
+  background: #e2d566;
+  border: 2px solid #111;
+  color: #111;
+  font-weight: 800;
+}
+
+.restart-action-btn:hover {
+  background: #edd955;
+}
+
+@media (max-width: 600px) {
+  .impact-hero-banner {
+    grid-template-columns: 1fr;
+  }
+  .accomplishment-grid {
+    grid-template-columns: 1fr;
+  }
+}
