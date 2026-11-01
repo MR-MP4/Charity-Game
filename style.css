@@ -13,6 +13,7 @@
   --dark-border: #161616;
   --panel-bg: #e2d566;
   --ink: #111111;
+  --font-family: Georgia, serif;
 }
 
 html,
@@ -22,7 +23,7 @@ body {
   width: 100%;
   height: 100%;
   color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family);
   overflow: hidden;
   background: #eef2e6;
   -webkit-font-smoothing: antialiased;
@@ -106,7 +107,6 @@ button:active:not(:disabled) {
   justify-content: center;
   padding: 40px 32px 32px;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
 /* PC and Laptop: Takes up much more of the screen with generous scale */
@@ -261,6 +261,16 @@ button:active:not(:disabled) {
 /* ============================================================
    RESPONSIVE CHARITY: WATER LOGO
 ============================================================ */
+.charity-logo-link {
+  display: inline-flex;
+  border-radius: 3px;
+}
+
+.charity-logo-link:focus-visible {
+  outline: 3px solid #6342dd;
+  outline-offset: 3px;
+}
+
 .charity-logo-box {
   background-color: #050505;
   display: flex;
@@ -268,14 +278,13 @@ button:active:not(:disabled) {
   align-items: center;
   justify-content: center;
   padding: 6px;
-  box-sizing: border-box;
   border-radius: 3px;
   border: 2px solid #000;
   user-select: none;
 }
 
 .charity-logo-sm {
-  width: 48px;
+  width: 60px;
   height: 56px;
 }
 .charity-logo-sm .charity-logo-svg {
@@ -287,7 +296,7 @@ button:active:not(:disabled) {
 }
 
 .charity-logo-md {
-  width: 96px;
+  width: 120px;
   height: 110px;
 }
 .charity-logo-md .charity-logo-svg {
@@ -311,8 +320,8 @@ button:active:not(:disabled) {
 }
 
 .charity-logo-responsive {
-  width: clamp(75px, 9vw, 136px);
-  height: clamp(86px, 10.5vw, 154px);
+  width: clamp(120px, 9vw, 136px);
+  height: clamp(100px, 10.5vw, 154px);
 }
 .charity-logo-responsive .charity-logo-svg {
   width: clamp(42px, 5.2vw, 76px);
@@ -324,7 +333,7 @@ button:active:not(:disabled) {
 
 .charity-logo-text {
   color: #ffffff;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: inherit;
   font-weight: 700;
   letter-spacing: -0.2px;
   margin-top: 4px;
@@ -1150,6 +1159,18 @@ button:active:not(:disabled) {
   border-bottom: 1px solid #eee;
   font-size: 14px;
   font-weight: 500;
+}
+
+.setting-select {
+  min-width: 120px;
+  padding: 6px 10px;
+  border: 2px solid #111;
+  border-radius: 8px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .toggle-button {
